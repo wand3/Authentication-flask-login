@@ -1,0 +1,31 @@
+
+body {
+    margin: 0;
+    width: 100%;
+    background-color: #1b1311;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+/* Buttons */
+.btn:hover, .btn:active, .btn:focus {
+    outline: none; }
+  .btn.btn-primary {
+    margin: 15px 0;
+    border: 2px solid #ffffff !important;}
+
+    /*color: #000 !important; }*/
+    .btn.btn-primary:hover {
+      border: 1px solid #fbceb5;
+      background: transparent;
+      color: #fbceb5; }
+    .btn.btn-primary.btn-outline-primary {
+      border: 1px solid #fbceb5;
+      background: transparent;
+      color: #fbceb5; }
+      .btn.btn-primary.btn-outline-primary:hover {
+        border: 1px solid transparent;
+        background: #644610;
+        color: #fff; }

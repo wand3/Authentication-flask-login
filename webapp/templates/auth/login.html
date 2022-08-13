@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block head %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block styles %}
+    {{ super() }}
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/login.css') }}">
+    {% endblock %}
+
+
+{% endblock %}
+{% block title %}Login{% endblock %}
+
+
+{% block login %}
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning " style="margin: 15px 0; background-color: transparent; color: white">
+            <button type="button" class="close" data-dismiss="alert" style="color: white">&times;</button>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+    <section class="ftco-section">
+        <div class="container">
+
+        <div class="row justify-content-center">
+            <div class=" col-md-10 col-lg-8" style="background-color: transparent; border-radius: 10px">
+                <div class="login-wrap p-0" style="justify-content: center;display: grid">
+                    <form method="POST" action="{{ url_for('.login')}}" class="signin-form">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.username_or_email.label }}
+                            {{ form.username_or_email(class="form-control", type="text", placeholder="Enter Email or Username") }}
+                            {% for error in form.username_or_email.errors %}
+                            <span style="color: #ffffff">{{ error }}</span>
+                            {% endfor %}
+
+                        </div>
+                        <div class="form-group">
+                            {{ form.password.label }}
+                            {{ form.password(class="form-control", type="password", placeholder="Enter Password", id="password-field") }}
+                            {% for error in form.password.errors %}
+                            <span style="color: #ffffff">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary submit px-3">Log In</button>
+                        </div>
+                        <div class="form-group d-md-flex">
+                            <div class="w-100">
+                                {{ form.remember_me }} {{ form.remember_me.label }}
+                            </div>
+                            <div class="w-50 text-md-right">
+{#                                <a href="{{ url_for('auth.reset_password_request') }}" style="color: #fa1e0e">Forgot Password</a>#}
+                            </div>
+
+                        </div>
+                    </form>
+                    <h5 class="mb-4 text-center"><a href="{{ url_for('auth.register') }}" style="color: #fffa2b; size: 20px">Don't Have an account?</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+{% endblock %}
+
+

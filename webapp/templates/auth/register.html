@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block head %}
+    {% block styles %}
+        {{ super() }}
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/login.css') }}">
+    {% endblock %}
+{% endblock %}
+{% block title %}Register{% endblock %}
+
+{#{% block page_content %}#}
+
+{#{% for message in get_flashed_messages() %}#}
+{#    <div class="alert alert-warning">#}
+{#        <button type="button" class="close" data-dismiss="alert">&times;</button>#}
+{#        {{ message }}#}
+{#    </div>#}
+{#{% endfor %}#}
+
+
+    {% block register %}
+    <!-- Sign up form -->
+
+        <section class="ftco-section">
+            <div class="container">
+
+            <div class="row justify-content-center">
+                <div class=" col-md-10 col-lg-8" style="background-color:transparent; border-radius: 10px">
+                    <div class="login-wrap p-0" style="justify-content: center;display: grid;">
+
+                        <form id="login" onsubmit="process(event)" method="POST" action="{{ url_for('.register')}}" class="signin-form">
+
+                            {{ form.hidden_tag() }}
+                            <div class="form-group">
+                                {{ form.email.label }}
+                                {{ form.email(class="form-control", type="email", placeholder="Enter Email") }}
+                                {% for error in form.email.errors %}
+                                <span style="color: #ffffff">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.username.label }}
+                                {{ form.username(class="form-control", type="username", placeholder="Enter Username") }}
+                                {% for error in form.username.errors %}
+                                <span style="color: #ffffff">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.password.label }}
+                                {{ form.password(class="form-control", type="password", placeholder="Enter Password", id="password-field") }}
+{#                                {% for error in form.password.errors %}#}
+{#                                <span style="color: #ffffff">{{ error }}</span>#}
+{#                                {% endfor %}#}
+                            </div>
+                            <div class="form-group">
+                                {{ form.confirm(class="form-control", type="password", placeholder="Confirm Password") }}
+{#                                {% for error in form.email.errors %}#}
+{#                                <span style="color: #ffffff">[{{ error }}]</span>#}
+{#                                {% endfor %}#}
+                            </div>
+                            {% for field, errors in form.errors.items() %}
+                                <small style="margin: 12px 12px">
+                                    {{ ', '.join(errors) }}
+                                </small>
+                            {% endfor %}
+
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary submit px-3">Sign up</button>
+                            </div>
+                            <div class="form-group d-md-flex">
+                                <div class="w-100 text-center">
+                                    <a href="{{ url_for('auth.login') }}" style="color: #fffa2b">already a member?</a>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+    {% endblock %}
