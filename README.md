@@ -1,2 +1,2 @@
-# flask-form
-Handling forms in Flask 
+# flask-login
+Basic webapp authentication with flask-login in Factory-pattern 
